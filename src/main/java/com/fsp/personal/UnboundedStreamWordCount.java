@@ -20,13 +20,14 @@ public class UnboundedStreamWordCount {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
         // 读取主机名和端口号
-        ParameterTool parameterTool = ParameterTool.fromArgs(args);
-        String hostName = parameterTool.get("host");
-        int port = parameterTool.getInt("port");
+//        ParameterTool parameterTool = ParameterTool.fromArgs(args);
+//        String hostName = parameterTool.get("host");
+//        int port = parameterTool.getInt("port");
 
 
         // 2. 读取文本流
-        DataStreamSource<String> lineDataStream = env.socketTextStream(hostName, port);
+//        DataStreamSource<String> lineDataStream = env.socketTextStream(hostName, port);
+        DataStreamSource<String> lineDataStream = env.socketTextStream("localhost", 7777);
 
         // 3. 转换计算
         SingleOutputStreamOperator<Tuple2<String, Long>> wordAndOneTuple = lineDataStream.flatMap((String line, Collector<Tuple2<String, Long>> out) -> {
