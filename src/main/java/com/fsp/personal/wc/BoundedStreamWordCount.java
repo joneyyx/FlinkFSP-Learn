@@ -1,4 +1,4 @@
-package com.fsp.personal;
+package com.fsp.personal.wc;
 
 import org.apache.flink.api.common.typeinfo.Types;
 import org.apache.flink.api.java.tuple.Tuple2;

@@ -1,4 +1,4 @@
-package com.fsp.personal;
+package com.fsp.personal.wc;
 
 import org.apache.flink.api.common.typeinfo.Types;
 import org.apache.flink.api.java.tuple.Tuple2;
@@ -41,7 +41,8 @@ public class UnboundedStreamWordCount {
         KeyedStream<Tuple2<String, Long>, String> wordAndOneKeyedSream = wordAndOneTuple.keyBy(data -> data.f0);
 
         // 5. 求和
-        SingleOutputStreamOperator<Tuple2<String, Long>> sum = wordAndOneKeyedSream.sum(1);
+        SingleOutputStreamOperator<Tuple2<String, Long>> sum = wordAndOneKeyedSream.sum(1)
+                .setParallelism(2);
 
         // 6. 答应
         sum.print();
